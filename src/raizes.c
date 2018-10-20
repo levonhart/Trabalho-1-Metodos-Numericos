@@ -15,7 +15,7 @@ double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, d
 		for (int i = 0; fabs(x-x0) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/(*deriv)(x);
 			Fx = func(x);
-			fprintf(saida, "%lf %lf\n",x,Fx);
+			fprintf(saida, "%lf , %lf\n",x,Fx);
 			x0=x;
 		}
 	fprintf(saida, "</iter>\n\
@@ -38,7 +38,7 @@ double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x
 		for (int i = 0; fabs(x-x0) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/derivx0;
 			Fx = func(x);
-			fprintf(saida, "%lf %lf\n",x,Fx);
+			fprintf(saida, "%lf , %lf\n",x,Fx);
 			x0=x;
 		}
 	fprintf(saida, "</iter>\n\
