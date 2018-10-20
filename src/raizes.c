@@ -62,6 +62,38 @@ double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x
 	return x1;
 } */
 
+double raiz_secante(double (*func)(double), double Xo, double Xn, double precisao, int maxIter){
+	double EA = HUGE_VAL, Xatual;
+	int cont = 0;
+	FILE *arq = fopen("data/secante.txt", "a");
+	if (arq == NULL) arq = stdout;
+
+	fprintf(arq, "<iter>\n\
+					Xo = %lf , f(Xo) = %lf\n\
+					X1 = %lf , f(X1) = %lf\n" \
+					,Xo, func(Xo), Xn, func(Xn));
+	/** fprintf(arq, "<info>\n"); */
+	/** fprintf(arq, "Metodo = secante\n"); */
+	/** fprintf(arq, "f(x) = a(E^d) -4(d^2)\n"); */
+	/** fprintf(arq, "fi(Xn+1) = Xn - ((Xn-(Xn-1))/f(Xn) - f(Xn-1)) * f(Xn)\n"); */
+	/** fprintf(arq, "</info>\n"); */
+	/** fprintf(arq, "<inter>\n"); */
+	while(EA > precisao && cont < maxIter){
+		Xatual = Xn - ((Xn - Xo)/(func(Xn) - func(Xo))) * func(Xn);
+		fprintf(arq, "%lf , %lf\n", Xatual, func(Xatual));
+		/** fprintf(arq, "Xo = %f\n", Xo); */
+		/** fprintf(arq, "Xn = %f\n",Xn ); */
+		/** fprintf(arq, "Xatual = %f\n",Xatual); */
+		EA = fabs(Xatual - Xn);
+		Xo = Xn;
+		Xn = Xatual;
+		cont++;
+	}
+	fprintf(arq, "</inter>\n");
+	fprintf(arq, "f(x) = %f\n",Xatual);
+	return Xatual;
+}
+
 int inic_arq_saida(char* metodo, char* funcao, char* func_iter){
 	FILE *arq;
 	if (strcmp(metodo,NEWTON)) {
