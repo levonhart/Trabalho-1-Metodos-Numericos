@@ -6,7 +6,7 @@
 double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, double precisao, int maxIter){
 	double Fx = func(x0), x = HUGE_VAL;
 	FILE *saida = fopen("data/newton.txt", "a");
-	if (saida == NULL) saida = stdout;	
+	if (saida == NULL) saida = stdout;
 
 	fprintf(saida, "<iter>\n\
 					Xo = %lf , f(Xo) = %lf\n" \
@@ -29,7 +29,7 @@ double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, d
 double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x0, double precisao, int maxIter){
 	double Fx = func(x0), derivx0 = deriv(x0), x = HUGE_VAL;
 	FILE *saida = fopen("data/newton-mod.txt", "a");
-	if (saida == NULL) saida = stdout;	
+	if (saida == NULL) saida = stdout;
 
 	fprintf(saida, "<iter>\n\
 					Xo = %lf , f(Xo) = %lf\n" \
