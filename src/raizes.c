@@ -58,9 +58,7 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 	FILE *arq = fopen("data/secante.txt", "a");
 	if (arq == NULL) arq = stdout;
 
-	fprintf(arq, "<iter>\n\
-					Xo = %lf , f(Xo) = %lf\n\
-					X1 = %lf , f(X1) = %lf\n" \
+	fprintf(arq, "<iter>\nXo = %lf , f(Xo) = %lf\nX1 = %lf , f(X1) = %lf\n" \
 					,Xo, func(Xo), Xn, func(Xn));
 	/** fprintf(arq, "<info>\n"); */
 	/** fprintf(arq, "Metodo = secante\n"); */

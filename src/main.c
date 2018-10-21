@@ -29,5 +29,8 @@ int main(int argc, char *argv[]){
 	inic_arq_saida(NEWTON_MOD,"e^d - 4d2", "e^d - 8d");
 	raiz_newton_mod(f,derivf,CHUTE,PREC_PADRAO,50);
 
+	inic_arq_saida(SECANTE, "e^d - 4d2", "e^d - 8d");
+	raiz_secante(f,CHUTE, CHUTE+0.2, PREC_PADRAO, LIMITE_ITER);
+
 	return 0;
 }
