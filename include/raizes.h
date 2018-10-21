@@ -5,7 +5,7 @@
 #define NEWTON_MOD "Newton-Raphson Modificado"
 #define SECANTE "Secante"
 
-double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, double lim_erro, int maxIter);
+double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, double precisao, int maxIter);
 
 double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x0, double precisao, int maxIter);
 
