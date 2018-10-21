@@ -7,8 +7,8 @@ cmake_minimum_required (VERSION 2.8)
 project (Metodos C)
 
 set (Metodos_VERSION_MAJOR 0)
-set (Metodos_VERSION_MINOR 0)
-set (Metodos_VERSION_PATCH 1)
+set (Metodos_VERSION_MINOR 1)
+set (Metodos_VERSION_PATCH 0)
 
 add_subdirectory(src)
 
