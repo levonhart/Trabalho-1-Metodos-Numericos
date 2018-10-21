@@ -2,7 +2,7 @@
 Programa em C capaz de calcular raizes do polinomio a*e^d - 4*d^2
 
 ## Tarefa:
-Seja um movimento físico regido pela função f(d) = a*e<sup>d</sup> – 4d², onde a são amplitudes dadas devido à oscilação encontrada em cada
+Seja um movimento físico regido pela função f(d) = a×e<sup>d</sup> – 4d², onde a são amplitudes dadas devido à oscilação encontrada em cada
 movimento considerado e d é o deslocamento encontrado em cada um desses movimentos, variando com o valor de a. O método de
 Newton modificado é tal que a função de iteração ϕ(x) utilizada é dada por ϕ(x) = x – (f(x) / f’(x<sub>o</sub>)), onde x<sub>o</sub> é uma aproximação inicial e
 é tal que f’(x<sub>o</sub>) ≠ 0. Desenvolva um sistema para calcular o valor de d que deve atender aos seguintes requisitos dados pelos itens abaixo:
