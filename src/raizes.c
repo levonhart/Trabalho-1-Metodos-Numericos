@@ -17,7 +17,9 @@ double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, d
 			EA = x - x0;
 			x0=x;
 		}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>", x, Fx);
+	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", x, Fx);
+	if(saida != stdout)
+		fclose(saida);
 	return x;
 }
 
@@ -35,7 +37,9 @@ double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x
 			EA = x - x0;
 			x0=x;
 		}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>", x, Fx);
+	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", x, Fx);
+	if(saida != stdout)
+		fclose(saida);
 	return x;
 }
 
@@ -77,19 +81,37 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 		Xn = Xatual;
 		cont++;
 	}
-	fprintf(arq, "</inter>\n");
-	fprintf(arq, "f(x) = %f\n",Xatual);
+	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", Xatual, f(Xatual));
+	if(saida != stdout)
+		fclose(saida);
 	return Xatual;
 }
 
-int inic_arq_saida(char* metodo, char* funcao, char* func_iter){
+int inic_arq_saida(char* metodo){
 	FILE *arq;
+	char *funcao, *func_iter;
+	if(param_a != 1){
+		sprintf(funcao, "%lf*e^X - 4X^2", param_a);
+		if(!strcmp(metodo,SECANTE))
+			sprintf(func_iter,"Xp - (%lfe^Xp - 4Xp^2)(Xp-Xa)/(%lfe^Xp - %lfe^Xa - 4(Xp - Xa)", \
+				param_a,param_a,param_a);
+		else
+			sprintf(func_iter, "%lf*e^X - 8X", param_a);
+	}
+	else {
+		sprintf(funcao, "e^X - 4X^2");
+		if(!strcmp(metodo,SECANTE))
+			sprintf(func_iter,"Xp - (e^Xp - 4Xp^2)(Xp-Xa)/(e^Xp - e^Xa - 4(Xp - Xa)");
+		else
+			sprintf(func_iter, "e^X - 8X");
+	}
+
 	if (!strcmp(metodo,NEWTON)) {
-		arq = fopen("data/newton.txt", "w");
+		arq = fopen("data/newton.txt", "a+");
 	} else if (!strcmp(metodo,NEWTON_MOD)) {
-		arq = fopen("data/newton-mod.txt", "w");
+		arq = fopen("data/newton-mod.txt", "a+");
 	} else if (!strcmp(metodo,SECANTE)) {
-		arq = fopen("data/secante.txt", "w");
+		arq = fopen("data/secante.txt", "a+");
 	} else {
 		return 1;
 	}
