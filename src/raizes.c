@@ -3,6 +3,15 @@
 #include <stdio.h>
 #include <string.h>
 
+double param_a = COEFICIENTE;
+
+double f(double d){
+	return param_a*exp(d) - 4*pow(d,2);
+}
+double derivf(double d){
+	return param_a*exp(d) - 8*d;
+}
+
 double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, double precisao, int maxIter){
 	double Fx = func(x0), EA = HUGE_VAL, x;
 	FILE *saida = fopen("data/newton.txt", "a");
@@ -81,15 +90,15 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 		Xn = Xatual;
 		cont++;
 	}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", Xatual, f(Xatual));
-	if(saida != stdout)
-		fclose(saida);
+	fprintf(arq, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", Xatual, func(Xatual));
+	if(arq != stdout)
+		fclose(arq);
 	return Xatual;
 }
 
 int inic_arq_saida(char* metodo){
 	FILE *arq;
-	char *funcao, *func_iter;
+	char funcao[30], func_iter[50];
 	if(param_a != 1){
 		sprintf(funcao, "%lf*e^X - 4X^2", param_a);
 		if(!strcmp(metodo,SECANTE))
@@ -116,7 +125,7 @@ int inic_arq_saida(char* metodo){
 		return 1;
 	}
 
-	fprintf(arq, "<info>\nf(x) = %s\nMétodo = %s\n%s = %s\n</info>\n", \
+	fprintf(arq, "<info>\nf(x) = %s\nMetodo = %s\n%s = %s\n</info>\n", \
 				funcao, metodo, \
 				(!strcmp(metodo,NEWTON) || !strcmp(metodo,NEWTON_MOD)) ? "Derivada" : "Fi", \
 				func_iter);
