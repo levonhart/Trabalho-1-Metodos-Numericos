@@ -1,0 +1,38 @@
+# GTK+ Input Method Modules file
+# Automatically generated file, do not edit
+# Created by /home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/gtk/.libs/gtk-query-immodules-3.0 from gtk+-3.22.0
+#
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-am-et.la" 
+"am_et" "Amharic (EZ+)" "gtk30" "/opt/gtk/share/locale" "am" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-cedilla.la" 
+"cedilla" "Cedilla" "gtk30" "/opt/gtk/share/locale" "az:ca:co:fr:gv:oc:pt:sq:tr:wa" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-cyrillic-translit.la" 
+"cyrillic_translit" "Cyrillic (Transliterated)" "gtk30" "/opt/gtk/share/locale" "" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-inuktitut.la" 
+"inuktitut" "Inuktitut (Transliterated)" "gtk30" "/opt/gtk/share/locale" "iu" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-ipa.la" 
+"ipa" "IPA" "gtk30" "/opt/gtk/share/locale" "" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-multipress.la" 
+"multipress" "Multipress" "gtk30" "" "" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-thai.la" 
+"thai" "Thai-Lao" "gtk30" "/opt/gtk/share/locale" "lo:th" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-ti-er.la" 
+"ti_er" "Tigrigna-Eritrean (EZ+)" "gtk30" "/opt/gtk/share/locale" "ti" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-ti-et.la" 
+"ti_et" "Tigrigna-Ethiopian (EZ+)" "gtk30" "/opt/gtk/share/locale" "ti" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-viqr.la" 
+"viqr" "Vietnamese (VIQR)" "gtk30" "/opt/gtk/share/locale" "vi" 
+
+"/home/leonardo/Bibliotecas_usadas/gtk+-3.22.0/modules/input/im-xim.la" 
+"xim" "X Input Method" "gtk30" "/opt/gtk/share/locale" "ko:ja:th:zh" 
+
+
