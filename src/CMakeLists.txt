@@ -9,7 +9,7 @@ if(GTK_FOUND)
 	link_directories(${GTK_LIBRARY_DIRS})
 	add_definitions(${GTK_CFLAGS_OTHER})
 	add_executable(mraizes-gui mainInterface.c sinais.c ${PROJECT_SOURCES})
-	target_link_libraries(mraizes-gui m ${GTK_LIBRARIES})
+	target_link_libraries(mraizes-gui m -export-dynamic ${GTK_LIBRARIES})
 endif(GTK_FOUND)
 
 # add_library(raizes raizes.c)
