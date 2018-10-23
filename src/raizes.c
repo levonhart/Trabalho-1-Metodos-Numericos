@@ -22,11 +22,11 @@ double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, d
 		for (int i = 0; fabs(EA) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/(*deriv)(x0);
 			Fx = func(x);
-			fprintf(saida, "%lf , %lf\n",x,Fx);
+			fprintf(saida, "%lf , %lf , %lf\n",x,Fx,EA);
 			EA = x - x0;
 			x0=x;
 		}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", x, Fx);
+	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf , Ea = %lf\n</result>\n", x, Fx, EA);
 	if(saida != stdout)
 		fclose(saida);
 	return x;
@@ -42,11 +42,10 @@ double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x
 		for (int i = 0; fabs(EA) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/derivx0;
 			Fx = func(x);
-			fprintf(saida, "%lf , %lf\n",x,Fx);
+			fprintf(saida, "%lf , %lf , %lf\n",x,Fx,EA);
 			EA = x - x0;
 			x0=x;
 		}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", x, Fx);
 	if(saida != stdout)
 		fclose(saida);
 	return x;
@@ -81,16 +80,16 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 	/** fprintf(arq, "<inter>\n"); */
 	while(EA > precisao && cont < maxIter){
 		Xatual = Xn - ((Xn - Xo)/(func(Xn) - func(Xo))) * func(Xn);
-		fprintf(arq, "%lf , %lf\n", Xatual, func(Xatual));
+		EA = fabs(Xatual - Xn);
+		fprintf(arq, "%lf , %lf , %lf\n", Xatual, func(Xatual), EA);
 		/** fprintf(arq, "Xo = %f\n", Xo); */
 		/** fprintf(arq, "Xn = %f\n",Xn ); */
 		/** fprintf(arq, "Xatual = %f\n",Xatual); */
-		EA = fabs(Xatual - Xn);
 		Xo = Xn;
 		Xn = Xatual;
 		cont++;
 	}
-	fprintf(arq, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n", Xatual, func(Xatual));
+	fprintf(arq, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n , Ea = %lf", Xatual, func(Xatual), EA);
 	if(arq != stdout)
 		fclose(arq);
 	return Xatual;
