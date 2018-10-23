@@ -1,0 +1,20 @@
+<info>
+f(x) = e^X - 4X^2
+Método = Newton-Raphson
+Derivada = e^X - 8X
+</info>
+<info>
+f(x) = e^X - 4X^2
+Metodo = Newton-Raphson
+Derivada = e^X - 8X
+</info>
+<iter>
+Xo = 0.500000 , f(Xo) = 0.648721
+0.775901 , -0.235543
+0.717522 , -0.010002
+0.714812 , -0.000022
+0.714806 , -0.000000
+</iter>
+<result>
+Xr = 0.714806 , f(Xr) = -0.000000
+</result>

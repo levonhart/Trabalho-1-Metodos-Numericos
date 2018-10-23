@@ -9,7 +9,7 @@
 #define CHUTE 0.5
 #define LIMITE_ITER 50
 
-// double param_a = COEFICIENTE;
+extern double param_a;
 
 double f(double d);
 double derivf(double d);
