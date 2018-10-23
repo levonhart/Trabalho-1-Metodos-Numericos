@@ -71,7 +71,7 @@
                     <property name="can_focus">False</property>
                     <property name="margin_left">11</property>
                     <property name="margin_top">10</property>
-                    <property name="pixbuf">../../../../media/leonardo/F4A2F37DA2F34322/Users/leona/Google Drive/UFC/Métodos Númericos I/Trabalho 01/Imagens/Redimensionadas/iloveimg-resized/Prancheta 13.png</property>
+                    <property name="pixbuf">data/Imagens/Prancheta 13.png</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -315,7 +315,7 @@ Modificado</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">10</property>
                     <property name="margin_bottom">20</property>
-                    <property name="pixbuf">../../../../media/leonardo/F4A2F37DA2F34322/Users/leona/Google Drive/UFC/Métodos Númericos I/Trabalho 01/Imagens/Redimensionadas/iloveimg-resized/Prancheta 1 cópia.png</property>
+                    <property name="pixbuf">data/Imagens/Prancheta 1 cópia.png</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -328,7 +328,7 @@ Modificado</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">20</property>
                     <property name="margin_bottom">20</property>
-                    <property name="pixbuf">../../../../media/leonardo/F4A2F37DA2F34322/Users/leona/Google Drive/UFC/Métodos Númericos I/Trabalho 01/Imagens/Redimensionadas/iloveimg-resized/Prancheta 1 cópia 4.png</property>
+                    <property name="pixbuf">data/Imagens/Prancheta 1 cópia 4.png</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -341,7 +341,7 @@ Modificado</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">20</property>
                     <property name="margin_bottom">20</property>
-                    <property name="pixbuf">../../../../media/leonardo/F4A2F37DA2F34322/Users/leona/Google Drive/UFC/Métodos Númericos I/Trabalho 01/Imagens/Redimensionadas/iloveimg-resized/Prancheta 1 cópia 2.png</property>
+                    <property name="pixbuf">data/Imagens/Prancheta 1 cópia 2.png</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -364,7 +364,7 @@ Modificado</property>
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">../../../../media/leonardo/F4A2F37DA2F34322/Users/leona/Google Drive/UFC/Métodos Númericos I/Trabalho 01/Imagens/Redimensionadas/iloveimg-resized/Prancheta 1.png</property>
+            <property name="pixbuf">data/Imagens/Prancheta 1.png</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
