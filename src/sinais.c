@@ -53,6 +53,44 @@ void met_todos(GtkWidget *widget, gpointer user_data){
 	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
 	
 	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
+
+	for(int i = 0; i < n && token; i++){
+		param_a = a[i] = atof(token);
+
+		inic_arq_saida(NEWTON_MOD);
+		raiz_newton_mod(f, derivf, CHUTE, epsilon, LIMITE_ITER);
+		token = strtok(NULL, ", ");
+	}
+	arq = fopen("data/newton-mod.txt", "r");
+	fseek (arq , 0 , SEEK_END);
+	tamanho = ftell (arq);
+	rewind (arq);
+	leitor = (char*) malloc (sizeof(char)*tamanho);
+	fread (leitor,1,tamanho,arq);
+
+	fscanf(arq, "%s", leitor);
+	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+	
+	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
+
+	for(int i = 0; i < n && token; i++){
+		param_a = a[i] = atof(token);
+
+		inic_arq_saida(SECANTE);
+		raiz_secante(f, CHUTE, CHUTE+1, epsilon, LIMITE_ITER);
+		token = strtok(NULL, ", ");
+	}
+	arq = fopen("data/secante.txt", "r");
+	fseek (arq , 0 , SEEK_END);
+	tamanho = ftell (arq);
+	rewind (arq);
+	leitor = (char*) malloc (sizeof(char)*tamanho);
+	fread (leitor,1,tamanho,arq);
+
+	fscanf(arq, "%s", leitor);
+	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+	
+	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
 }
 
 void met_newt(GtkWidget *widget, gpointer user_data){
@@ -60,10 +98,17 @@ void met_newt(GtkWidget *widget, gpointer user_data){
 	const gchar *input_n_text, *input_a_text, *input_epsilon_text;
 
 	//Reconhecendo as caixas de texto
-	GtkWidget *input_n, *input_a, *input_epsilon;
+	GtkWidget *input_n, *input_a, *input_epsilon, *text_exec;
 	input_n = GTK_WIDGET(gtk_builder_get_object(builder, "input_n"));
 	input_a = GTK_WIDGET(gtk_builder_get_object(builder, "input_a"));
 	input_epsilon = GTK_WIDGET(gtk_builder_get_object(builder, "input_epsilon"));
+	text_exec = GTK_WIDGET(gtk_builder_get_object(builder, "text_exec"));
+
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_exec));
+	GtkTextIter start, end, iter;
+	char *leitor;
+	FILE *arq;
+
 
 	//Get das entradas
 	input_n_text = gtk_entry_get_text(GTK_ENTRY(input_n));
@@ -86,6 +131,17 @@ void met_newt(GtkWidget *widget, gpointer user_data){
 		raiz_newton(f, derivf, CHUTE, epsilon, LIMITE_ITER);
 		token = strtok(NULL, ", ");
 	}
+	arq = fopen("data/newton.txt", "r");
+	fseek (arq , 0 , SEEK_END);
+	int tamanho = ftell (arq);
+	rewind (arq);
+	leitor = (char*) malloc (sizeof(char)*tamanho);
+	fread (leitor,1,tamanho,arq);
+
+	fscanf(arq, "%s", leitor);
+	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+	
+	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
 }
 
 void met_newtMod(GtkWidget *widget, gpointer user_data){
@@ -93,10 +149,16 @@ void met_newtMod(GtkWidget *widget, gpointer user_data){
 	const gchar *input_n_text, *input_a_text, *input_epsilon_text;
 
 	//Reconhecendo as caixas de texto
-	GtkWidget *input_n, *input_a, *input_epsilon;
+	GtkWidget *input_n, *input_a, *input_epsilon, *text_exec;
 	input_n = GTK_WIDGET(gtk_builder_get_object(builder, "input_n"));
 	input_a = GTK_WIDGET(gtk_builder_get_object(builder, "input_a"));
 	input_epsilon = GTK_WIDGET(gtk_builder_get_object(builder, "input_epsilon"));
+	text_exec = GTK_WIDGET(gtk_builder_get_object(builder, "text_exec"));
+
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_exec));
+	GtkTextIter start, end, iter;
+	char *leitor;
+	FILE *arq;
 
 	//Get das entradas
 	input_n_text = gtk_entry_get_text(GTK_ENTRY(input_n));
@@ -115,10 +177,21 @@ void met_newtMod(GtkWidget *widget, gpointer user_data){
 	for(int i = 0; i < n && token; i++){
 		param_a = a[i] = atof(token);
 
-		inic_arq_saida(NEWTON);
+		inic_arq_saida(NEWTON_MOD);
 		raiz_newton_mod(f, derivf, CHUTE, epsilon, LIMITE_ITER);
 		token = strtok(NULL, ", ");
 	}
+	arq = fopen("data/newton-mod.txt", "r");
+	fseek (arq , 0 , SEEK_END);
+	int tamanho = ftell (arq);
+	rewind (arq);
+	leitor = (char*) malloc (sizeof(char)*tamanho);
+	fread (leitor,1,tamanho,arq);
+
+	fscanf(arq, "%s", leitor);
+	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+	
+	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
 }
 
 void met_secan(GtkWidget *widget, gpointer user_data){
@@ -126,10 +199,16 @@ void met_secan(GtkWidget *widget, gpointer user_data){
 	const gchar *input_n_text, *input_a_text, *input_epsilon_text;
 
 	//Reconhecendo as caixas de texto
-	GtkWidget *input_n, *input_a, *input_epsilon;
+	GtkWidget *input_n, *input_a, *input_epsilon, *text_exec;
 	input_n = GTK_WIDGET(gtk_builder_get_object(builder, "input_n"));
 	input_a = GTK_WIDGET(gtk_builder_get_object(builder, "input_a"));
 	input_epsilon = GTK_WIDGET(gtk_builder_get_object(builder, "input_epsilon"));
+	text_exec = GTK_WIDGET(gtk_builder_get_object(builder, "text_exec"));
+
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_exec));
+	GtkTextIter start, end, iter;
+	char *leitor;
+	FILE *arq;
 
 	//Get das entradas
 	input_n_text = gtk_entry_get_text(GTK_ENTRY(input_n));
@@ -148,10 +227,21 @@ void met_secan(GtkWidget *widget, gpointer user_data){
 	for(int i = 0; i < n && token; i++){
 		param_a = a[i] = atof(token);
 
-		inic_arq_saida(NEWTON);
+		inic_arq_saida(SECANTE);
 		raiz_secante(f, CHUTE, CHUTE+1, epsilon, LIMITE_ITER);
 		token = strtok(NULL, ", ");
 	}
+	arq = fopen("data/secante.txt", "r");
+	fseek (arq , 0 , SEEK_END);
+	int tamanho = ftell (arq);
+	rewind (arq);
+	leitor = (char*) malloc (sizeof(char)*tamanho);
+	fread (leitor,1,tamanho,arq);
+
+	fscanf(arq, "%s", leitor);
+	gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+	
+	gtk_text_buffer_insert(buffer, &iter, leitor, -1);
 }
 
 //FUNÇÃO DOS BOTÕES OPÇÕES
