@@ -88,7 +88,7 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 	FILE *arq = fopen("data/secante.txt", "a");
 	if (arq == NULL) arq = stdout;
 
-	fprintf(arq, "<iter>\nXo = %lf , f(Xo) = %lf\nX1 = %lf , f(X1) = %lf\n" \
+	fprintf(arq, "Xo = %lf , f(Xo) = %lf\nX1 = %lf , f(X1) = %lf\n" \
 					,Xo, func(Xo), Xn, func(Xn));
 	fprintf(arq, "-----------------------------------------------------------------------------\n");
 	fprintf(arq, "Xo = %lf\tf(Xo) = %lf\tX1 = %lf\tf(X1) = %lf\n",Xo,func(Xo),Xn,func(Xn));
@@ -144,7 +144,7 @@ int inic_arq_saida(char* metodo){
 		return 1;
 	}
 
-	fprintf(arq, "===============================================\nf(x) = %s\nMetodo = %s\n%s = %s\n--------------------------------------------------------------------------------\n", \
+	fprintf(arq, "===============================================\nf(x) = %s\nMetodo = %s\n%s = %s\n", \
 				funcao, metodo, \
 				(!strcmp(metodo,NEWTON) || !strcmp(metodo,NEWTON_MOD)) ? "Derivada" : "Fi", \
 				func_iter);
