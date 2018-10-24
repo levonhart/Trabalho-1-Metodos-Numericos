@@ -17,16 +17,21 @@ double raiz_newton(double (*func)(double), double (*deriv)(double), double x0, d
 	FILE *saida = fopen("data/newton.txt", "a");
 	if (saida == NULL) saida = stdout;
 
-	fprintf(saida, "<iter>\nXo = %lf , f(Xo) = %lf\n",x0,Fx);
+	fprintf(saida, "--------------------------------------------------------------------------------\n");
+	fprintf(saida, "Xo = %lf\tf(Xo) = %lf\n",x0,Fx);
+	fprintf(saida, "--------------------------------------------------------------------------------\n");
+	fprintf(saida, "%11s%14s%11s%12s%11s\n","X","|","f(X)", "|","EA");
+	fprintf(saida, "--------------------------------------------------------------------------------\n");
 	if (deriv(x0) != 0)
 		for (int i = 0; fabs(EA) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/(*deriv)(x0);
 			Fx = func(x);
-			fprintf(saida, "%lf , %lf , %lf\n",x,Fx,EA);
 			EA = x - x0;
+			fprintf(saida, "% 13lf%5s% 13lf%5s% 13lf\n",x,"|",Fx,"|",EA);
 			x0=x;
 		}
-	fprintf(saida, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf , Ea = %lf\n</result>\n", x, Fx, EA);
+	fprintf(saida, "--------------------------------------------------------------------------------\n");
+	fprintf(saida, "resultado:\tXr = %lf , f(Xr) = %lf , Ea = %lf\n", x, Fx, EA);
 	if(saida != stdout)
 		fclose(saida);
 	return x;
@@ -37,15 +42,21 @@ double raiz_newton_mod(double (*func)(double), double (*deriv)(double), double x
 	FILE *saida = fopen("data/newton-mod.txt", "a");
 	if (saida == NULL) saida = stdout;
 
-	fprintf(saida, "<iter>\nXo = %lf , f(Xo) = %lf\n",x0,Fx);
+	fprintf(saida, "-----------------------------------------------------------------------------\n");
+	fprintf(saida, "Xo = %lf\tf(Xo) = %lf\n",x0,Fx);
+	fprintf(saida, "-----------------------------------------------------------------------------\n");
+	fprintf(saida, "%11s%14s%11s%12s%11s\n","X","|","f(X)", "|","EA");
+	fprintf(saida, "-----------------------------------------------------------------------------\n");
 	if (derivx0 != 0)
 		for (int i = 0; fabs(EA) > precisao && i < maxIter; i++) {
 			x = x0 - Fx/derivx0;
 			Fx = func(x);
-			fprintf(saida, "%lf , %lf , %lf\n",x,Fx,EA);
 			EA = x - x0;
+			fprintf(saida, "% 13lf%5s% 13lf%5s% 13lf\n",x,"|",Fx,"|",EA);
 			x0=x;
 		}
+	fprintf(saida, "-----------------------------------------------------------------------------\n");
+	fprintf(saida, "resultado:\tXr = %lf , f(Xr) = %lf , Ea = %lf\n", x, Fx, EA);
 	if(saida != stdout)
 		fclose(saida);
 	return x;
@@ -72,16 +83,16 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 
 	fprintf(arq, "<iter>\nXo = %lf , f(Xo) = %lf\nX1 = %lf , f(X1) = %lf\n" \
 					,Xo, func(Xo), Xn, func(Xn));
-	/** fprintf(arq, "<info>\n"); */
-	/** fprintf(arq, "Metodo = secante\n"); */
-	/** fprintf(arq, "f(x) = a(E^d) -4(d^2)\n"); */
+	fprintf(arq, "-----------------------------------------------------------------------------\n");
+	fprintf(arq, "Xo = %lf\tf(Xo) = %lf\tX1 = %lf\tf(X1) = %lf\n",Xo,func(Xo),Xn,func(Xn));
+	fprintf(arq, "-----------------------------------------------------------------------------\n");
+	fprintf(arq, "%11s%14s%11s%12s%11s\n","X","|","f(X)", "|","EA");
+	fprintf(arq, "-----------------------------------------------------------------------------\n");
 	/** fprintf(arq, "fi(Xn+1) = Xn - ((Xn-(Xn-1))/f(Xn) - f(Xn-1)) * f(Xn)\n"); */
-	/** fprintf(arq, "</info>\n"); */
-	/** fprintf(arq, "<inter>\n"); */
 	while(EA > precisao && cont < maxIter){
 		Xatual = Xn - ((Xn - Xo)/(func(Xn) - func(Xo))) * func(Xn);
 		EA = fabs(Xatual - Xn);
-		fprintf(arq, "%lf , %lf , %lf\n", Xatual, func(Xatual), EA);
+		fprintf(arq, "% 13lf%5s% 13lf%5s% 13lf\n",Xatual,"|",func(Xatual),"|",EA);
 		/** fprintf(arq, "Xo = %f\n", Xo); */
 		/** fprintf(arq, "Xn = %f\n",Xn ); */
 		/** fprintf(arq, "Xatual = %f\n",Xatual); */
@@ -89,7 +100,9 @@ double raiz_secante(double (*func)(double), double Xo, double Xn, double precisa
 		Xn = Xatual;
 		cont++;
 	}
-	fprintf(arq, "</iter>\n<result>\nXr = %lf , f(Xr) = %lf\n</result>\n , Ea = %lf", Xatual, func(Xatual), EA);
+	fprintf(arq, "-----------------------------------------------------------------------------\n");
+	fprintf(arq, "resultado:\tXr = %lf , f(Xr) = %lf , Ea = %lf\n", Xatual, func(Xatual), EA);
+
 	if(arq != stdout)
 		fclose(arq);
 	return Xatual;
@@ -124,7 +137,7 @@ int inic_arq_saida(char* metodo){
 		return 1;
 	}
 
-	fprintf(arq, "<info>\nf(x) = %s\nMetodo = %s\n%s = %s\n</info>\n", \
+	fprintf(arq, "===============================================\nf(x) = %s\nMetodo = %s\n%s = %s\n--------------------------------------------------------------------------------\n", \
 				funcao, metodo, \
 				(!strcmp(metodo,NEWTON) || !strcmp(metodo,NEWTON_MOD)) ? "Derivada" : "Fi", \
 				func_iter);
