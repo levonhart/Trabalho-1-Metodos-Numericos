@@ -5,6 +5,13 @@
 
 double param_a = COEFICIENTE;
 
+double 	Erro_Absoluto(double x, double y){
+	double EA;
+	EA = x - y;
+	if(EA < 0) return -EA;
+	return EA;
+}
+
 double f(double d){
 	return param_a*exp(d) - 4*pow(d,2);
 }
